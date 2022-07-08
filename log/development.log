@@ -1,0 +1,702 @@
+Started GET "/" for ::1 at 2022-07-08 21:50:43 +0500
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 3 pending migrations:
+
+20220703114117_create_users.rb
+20220703151004_add_index_to_users_email.rb
+20220704050842_add_password_digest_to_users.rb
+
+
+):
+  
+activerecord (7.0.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (7.0.3) lib/active_record/migration.rb:597:in `block in call'
+activerecord (7.0.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `block in tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:38:in `tagged'
+activesupport (7.0.3) lib/active_support/tagged_logging.rb:114:in `tagged'
+railties (7.0.3) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/server_timing.rb:20:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.3) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220703114117)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220703114117"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20220703151004)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220703151004"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20220704050842)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220704050842"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-07-08 16:51:18.795013"], ["updated_at", "2022-07-08 16:51:18.795013"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2022-07-08 21:51:23 +0500
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 3169.9ms | Allocations: 178319)
+  Rendered layouts/_shim.html.erb (Duration: 0.8ms | Allocations: 126)
+  Rendered layouts/_head.html.erb (Duration: 33.8ms | Allocations: 9516)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 528)
+  Rendered layouts/_footer.html.erb (Duration: 1.7ms | Allocations: 231)
+  Rendered layout layouts/application.html.erb (Duration: 3218.1ms | Allocations: 189907)
+Completed 200 OK in 3249ms (Views: 3225.0ms | ActiveRecord: 0.0ms | Allocations: 196362)
+
+
+Started GET "/signup" for ::1 at 2022-07-08 21:51:28 +0500
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 1.5ms | Allocations: 232)
+  Rendered users/new.html.erb within layouts/application (Duration: 43.1ms | Allocations: 7058)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered layouts/_head.html.erb (Duration: 15.4ms | Allocations: 4993)
+  Rendered layouts/_header.html.erb (Duration: 0.8ms | Allocations: 157)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 71)
+  Rendered layout layouts/application.html.erb (Duration: 63.8ms | Allocations: 13108)
+Completed 200 OK in 94ms (Views: 67.6ms | ActiveRecord: 0.9ms | Allocations: 20744)
+
+
+Started GET "/help" for ::1 at 2022-07-08 21:51:32 +0500
+Processing by StaticPagesController#help as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/help.html.erb within layouts/application
+  Rendered static_pages/help.html.erb within layouts/application (Duration: 1.1ms | Allocations: 187)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 14.0ms | Allocations: 5091)
+  Rendered layouts/_header.html.erb (Duration: 0.5ms | Allocations: 144)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | Allocations: 6277)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.0ms | Allocations: 6706)
+
+
+Started GET "/" for ::1 at 2022-07-08 21:51:34 +0500
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.9ms | Allocations: 678)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 15.3ms | Allocations: 4929)
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 130)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 6591)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.0ms | Allocations: 6906)
+
+
+Started GET "/login" for ::1 at 2022-07-08 21:51:34 +0500
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 8.8ms | Allocations: 1342)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 16)
+  Rendered layouts/_head.html.erb (Duration: 29.7ms | Allocations: 4995)
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 141)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 71)
+  Rendered layout layouts/application.html.erb (Duration: 51.2ms | Allocations: 7363)
+Completed 200 OK in 62ms (Views: 58.8ms | ActiveRecord: 0.0ms | Allocations: 8392)
+
+
+Started GET "/login" for ::1 at 2022-07-08 21:53:14 +0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 20.8ms | Allocations: 3794)
+  Rendered layouts/_shim.html.erb (Duration: 1.3ms | Allocations: 155)
+  Rendered layouts/_head.html.erb (Duration: 557.1ms | Allocations: 55496)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 536)
+  Rendered layouts/_footer.html.erb (Duration: 2.2ms | Allocations: 231)
+  Rendered layout layouts/application.html.erb (Duration: 589.6ms | Allocations: 61344)
+Completed 200 OK in 622ms (Views: 595.7ms | ActiveRecord: 0.0ms | Allocations: 65291)
+
+
+Started POST "/login" for ::1 at 2022-07-08 21:53:23 +0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 672)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered layouts/_head.html.erb (Duration: 15.5ms | Allocations: 5048)
+  Rendered layouts/_header.html.erb (Duration: 0.9ms | Allocations: 130)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | Allocations: 6638)
+Completed 200 OK in 35ms (Views: 21.0ms | ActiveRecord: 0.9ms | Allocations: 11666)
+
+
+Started POST "/login" for ::1 at 2022-07-08 21:53:35 +0500
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 590)
+  Rendered layouts/_shim.html.erb (Duration: 0.3ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 13.7ms | Allocations: 4830)
+  Rendered layouts/_header.html.erb (Duration: 0.3ms | Allocations: 130)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 18.0ms | Allocations: 6399)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.1ms | Allocations: 7487)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/signup" for ::1 at 2022-07-08 21:54:39 +0500
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 19)
+  Rendered users/new.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1445)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 12)
+  Rendered layouts/_head.html.erb (Duration: 18.6ms | Allocations: 4833)
+  Rendered layouts/_header.html.erb (Duration: 0.5ms | Allocations: 132)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 27.4ms | Allocations: 7257)
+Completed 200 OK in 30ms (Views: 28.5ms | ActiveRecord: 0.0ms | Allocations: 7613)
+
+
+Started POST "/users" for ::1 at 2022-07-08 21:55:00 +0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"name"=>"taimour", "email"=>"taimour@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "taimour@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)[0m  [["name", "taimour"], ["email", "taimour@gmail.com"], ["created_at", "2022-07-08 16:55:00.861384"], ["updated_at", "2022-07-08 16:55:00.861384"], ["password_digest", "[FILTERED]"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 370ms (ActiveRecord: 4.9ms | Allocations: 9634)
+
+
+Started GET "/users/1" for ::1 at 2022-07-08 21:55:00 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 3.6ms | Allocations: 331)
+  Rendered layouts/_shim.html.erb (Duration: 0.4ms | Allocations: 16)
+  Rendered layouts/_head.html.erb (Duration: 15.2ms | Allocations: 5300)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.3ms | Allocations: 1649)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 71)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | Allocations: 8046)
+Completed 200 OK in 33ms (Views: 28.0ms | ActiveRecord: 0.4ms | Allocations: 10111)
+
+
+Started GET "/users/1" for ::1 at 2022-07-08 21:57:47 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.0ms | Allocations: 304)
+  Rendered layouts/_head.html.erb (Duration: 40.2ms | Allocations: 9784)
+  Rendered layout layouts/application.html.erb (Duration: 43.2ms | Allocations: 10617)
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 0.1ms | Allocations: 12227)
+
+
+  
+ActionView::Template::Error (undefined method `javascript_pack_tag' for #<ActionView::Base:0x0000000000d070>
+Did you mean?  javascript_path
+               javascript_tag):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 22:03:16 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.4ms | Allocations: 72)
+  Rendered layouts/_head.html.erb (Duration: 40.1ms | Allocations: 9369)
+  Rendered layout layouts/application.html.erb (Duration: 42.5ms | Allocations: 9595)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 0.2ms | Allocations: 10391)
+
+
+  
+ActionView::Template::Error (undefined method `javascript_pack_tag' for #<ActionView::Base:0x0000000000d390>
+Did you mean?  javascript_path
+               javascript_tag):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 22:03:53 +0500
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 685)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+ - configuration.entry should be an non-empty object.
+   -> Multiple entry bundles are created. The key is the chunk name. The value can be a string or an array.
+
+  Rendered layouts/_head.html.erb (Duration: 5075.9ms | Allocations: 60146)
+  Rendered layout layouts/application.html.erb (Duration: 5087.1ms | Allocations: 61450)
+Completed 500 Internal Server Error in 5220ms (ActiveRecord: 2.6ms | Allocations: 76658)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /Users/arkhitech/sample_app2/sample_app/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 22:31:19 +0500
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/arkhitech/sample_app2/sample_app/app/controllers/users_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:33: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/users/1" for ::1 at 2022-07-08 22:31:56 +0500
+  
+SyntaxError (/Users/arkhitech/sample_app2/sample_app/app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:32: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/users/1" for ::1 at 2022-07-08 22:32:13 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 122)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+ - configuration.entry should be an non-empty object.
+   -> Multiple entry bundles are created. The key is the chunk name. The value can be a string or an array.
+
+  Rendered layouts/_head.html.erb (Duration: 3947.4ms | Allocations: 9346)
+  Rendered layout layouts/application.html.erb (Duration: 3948.4ms | Allocations: 9637)
+Completed 500 Internal Server Error in 3972ms (ActiveRecord: 1.2ms | Allocations: 14801)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /Users/arkhitech/sample_app2/sample_app/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 22:54:39 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 342)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+ - configuration.entry should be an non-empty object.
+   -> Multiple entry bundles are created. The key is the chunk name. The value can be a string or an array.
+
+  Rendered layouts/_head.html.erb (Duration: 4377.5ms | Allocations: 59779)
+  Rendered layout layouts/application.html.erb (Duration: 4383.4ms | Allocations: 60669)
+Completed 500 Internal Server Error in 4433ms (ActiveRecord: 2.0ms | Allocations: 74337)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /Users/arkhitech/sample_app2/sample_app/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 22:58:13 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 79)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+ - configuration.entry should be an non-empty object.
+   -> Multiple entry bundles are created. The key is the chunk name. The value can be a string or an array.
+
+  Rendered layouts/_head.html.erb (Duration: 3753.7ms | Allocations: 9193)
+  Rendered layout layouts/application.html.erb (Duration: 3754.7ms | Allocations: 9427)
+Completed 500 Internal Server Error in 3760ms (ActiveRecord: 0.3ms | Allocations: 10247)
+
+
+  
+ActionView::Template::Error (Webpacker can't find application.js in /Users/arkhitech/sample_app2/sample_app/public/packs/manifest.json. Possible causes:
+1. You want to set webpacker.yml value of compile to true for your environment
+   unless you are using the `webpack -w` or the webpack-dev-server.
+2. webpack has not yet re-run to reflect updates.
+3. You have misconfigured Webpacker's config/webpacker.yml file.
+4. Your webpack configuration is not creating a manifest.
+Your manifest contains:
+{
+}
+):
+     6: <%= csp_meta_tag %>
+     7: 
+     8: <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
+     9: <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    10: <%= render 'layouts/shim' %>
+    11: <!--[if lt IE 9]>
+    12: <![endif]-->   
+  
+app/views/layouts/_head.html.erb:9
+app/views/layouts/application.html.erb:3
+Started GET "/users/1" for ::1 at 2022-07-08 23:04:11 +0500
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 685)
+[Webpacker] Compiling...
+Started GET "/" for ::1 at 2022-07-08 23:04:17 +0500
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 3.9ms | Allocations: 511)
+[Webpacker] Compiling...
+Started GET "/users/1" for ::1 at 2022-07-08 23:04:18 +0500
+  [1m[35m (50.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 4.8ms | Allocations: 685)
+[Webpacker] Compiling...
+[Webpacker] Compilation failed:
+Hash: cef76907147241d58ff9
+Version: webpack 4.46.0
+Time: 20747ms
+Built at: 07/08/2022 11:04:38 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-dc3a903a7ac257fb0b06.js    796 KiB  application  [emitted] [immutable]  application
+js/application-dc3a903a7ac257fb0b06.js.map    843 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-dc3a903a7ac257fb0b06.js js/application-dc3a903a7ac257fb0b06.js.map
+[./app/javascript/packs/application.js] 1.05 KiB {application} [built]
+    + 121 hidden modules
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/activestorage' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 20:0-31
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/ujs' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 16:0-21
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'channels' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 22:0-19
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'turbolinks' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 18:0-21
+
+  Rendered layouts/_shim.html.erb (Duration: 0.8ms | Allocations: 139)
+  Rendered layouts/_head.html.erb (Duration: 26275.1ms | Allocations: 12068)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 9.1ms | Allocations: 2051)
+  Rendered layouts/_footer.html.erb (Duration: 1.4ms | Allocations: 244)
+  Rendered layout layouts/application.html.erb (Duration: 26309.7ms | Allocations: 16340)
+Completed 200 OK in 26415ms (Views: 26324.9ms | ActiveRecord: 2.4ms | Allocations: 31600)
+
+
+[Webpacker] Compilation failed:
+Hash: cef76907147241d58ff9
+Version: webpack 4.46.0
+Time: 11298ms
+Built at: 07/08/2022 11:04:38 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-dc3a903a7ac257fb0b06.js    796 KiB  application  [emitted] [immutable]  application
+js/application-dc3a903a7ac257fb0b06.js.map    843 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-dc3a903a7ac257fb0b06.js js/application-dc3a903a7ac257fb0b06.js.map
+[./app/javascript/packs/application.js] 1.05 KiB {application} [built]
+    + 121 hidden modules
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/activestorage' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 20:0-31
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/ujs' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 16:0-21
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'channels' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 22:0-19
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'turbolinks' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 18:0-21
+
+  Rendered layouts/_shim.html.erb (Duration: 0.8ms | Allocations: 126)
+  Rendered layouts/_head.html.erb (Duration: 19661.5ms | Allocations: 4882)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 9.0ms | Allocations: 2067)
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 231)
+  Rendered layout layouts/application.html.erb (Duration: 19683.0ms | Allocations: 9147)
+Completed 200 OK in 19844ms (Views: 19699.9ms | ActiveRecord: 1.7ms | Allocations: 24411)
+
+
+[Webpacker] Compilation failed:
+Hash: cef76907147241d58ff9
+Version: webpack 4.46.0
+Time: 12532ms
+Built at: 07/08/2022 11:04:39 PM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-dc3a903a7ac257fb0b06.js    796 KiB  application  [emitted] [immutable]  application
+js/application-dc3a903a7ac257fb0b06.js.map    843 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-dc3a903a7ac257fb0b06.js js/application-dc3a903a7ac257fb0b06.js.map
+[./app/javascript/packs/application.js] 1.05 KiB {application} [built]
+    + 121 hidden modules
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/activestorage' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 20:0-31
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve '@rails/ujs' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 16:0-21
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'channels' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 22:0-19
+
+ERROR in ./app/javascript/packs/application.js
+Module not found: Error: Can't resolve 'turbolinks' in '/Users/arkhitech/sample_app2/sample_app/app/javascript/packs'
+ @ ./app/javascript/packs/application.js 18:0-21
+
+  Rendered layouts/_shim.html.erb (Duration: 0.2ms | Allocations: 25)
+  Rendered layouts/_head.html.erb (Duration: 21261.4ms | Allocations: 12818)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.4ms | Allocations: 857)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 71)
+  Rendered layout layouts/application.html.erb (Duration: 21286.7ms | Allocations: 14972)
+Completed 200 OK in 21299ms (Views: 21293.1ms | ActiveRecord: 0.2ms | Allocations: 16007)
+
+
+Started GET "/new" for ::1 at 2022-07-08 23:05:17 +0500
+  
+ActionController::RoutingError (No route matches [GET] "/new"):
+  
+Started GET "/users/1" for ::1 at 2022-07-08 23:05:26 +0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 93)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 11.8ms | Allocations: 2801)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 5.0ms | Allocations: 768)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 21.4ms | Allocations: 4406)
+Completed 200 OK in 28ms (Views: 24.1ms | ActiveRecord: 0.5ms | Allocations: 5287)
+
+
+Started GET "/help" for ::1 at 2022-07-08 23:07:52 +0500
+Processing by StaticPagesController#help as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/help.html.erb within layouts/application
+  Rendered static_pages/help.html.erb within layouts/application (Duration: 1.3ms | Allocations: 184)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 16)
+  Rendered layouts/_head.html.erb (Duration: 8.9ms | Allocations: 2865)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.4ms | Allocations: 901)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 71)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 4715)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.2ms | Allocations: 5738)
+
+
+Started GET "/" for ::1 at 2022-07-08 23:07:53 +0500
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.3ms | Allocations: 336)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 9.9ms | Allocations: 2698)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.0ms | Allocations: 744)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | Allocations: 4512)
+Completed 200 OK in 16ms (Views: 15.0ms | ActiveRecord: 0.2ms | Allocations: 4919)
+
+
+Started GET "/signup" for ::1 at 2022-07-08 23:07:55 +0500
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 1.2ms | Allocations: 230)
+  Rendered users/new.html.erb within layouts/application (Duration: 25.1ms | Allocations: 4806)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_head.html.erb (Duration: 6.5ms | Allocations: 2524)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:10:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.6ms | Allocations: 830)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 66)
+  Rendered layout layouts/application.html.erb (Duration: 37.5ms | Allocations: 8925)
+Completed 200 OK in 41ms (Views: 38.6ms | ActiveRecord: 0.2ms | Allocations: 9356)
+
+
